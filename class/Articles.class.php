@@ -4,7 +4,7 @@ class Articles {
     
     public $id;
     public $titre;
-    public $text;
+    public $texte;
     public $date;
     public $publie;
 
@@ -43,9 +43,9 @@ class Articles {
     /**
      * @return mixed
      */
-    public function getText()
+    public function getTexte()
     {
-        return $this->text;
+        return $this->texte;
     }
 
     /**
@@ -91,16 +91,22 @@ class Articles {
 
    
     public function hydrate($donnees) {
+        if(isset($donnees['id'])) {
+            $this->id = $donnees['id'];
+        } else {
+            $this->id = '';
+        }
+
         if(isset($donnees['titre'])) {
             $this->titre = $donnees['titre'];
         } else {
             $this->titre = '';
         }
     
-        if(isset($donnees['text'])) {
-            $this->text = $donnees['text'];
+        if(isset($donnees['texte'])) {
+            $this->texte = $donnees['texte'];
         } else {
-            $this->text = '';
+            $this->texte = '';
         }
         if(isset($donnees['date'])) {
             $this->date = $donnees['date'];

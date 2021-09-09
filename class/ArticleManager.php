@@ -1,7 +1,6 @@
 <?php
 
-class ArticleManager
-{
+class ArticleManager {
     private $bdd;
     private $_result;
     private $_message;
@@ -93,13 +92,13 @@ class ArticleManager
     }
 
     public function get($id) {
-        $sql = 'SELECT * FROM articles WHERE id = $id';
+        $sql = "SELECT * FROM articles WHERE id = :id";
         $req = $this->bdd->prepare($sql);
 
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
 
-        $donnees = $req->fecth(PDO::FETCH_ASSOC);
+        $donnees = $req->fetch(PDO::FETCH_ASSOC);
 
         $article = new Articles();
         $article->hydrate($donnees);

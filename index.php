@@ -1,9 +1,12 @@
 <?php require_once "config/init.conf.php"; ?>
 <?php require_once "class/Articles.class.php" ?>
-<?php require_once "config/bdd.conf.php" ?>
 <?php require_once "class/ArticleManager.php" ?>
 <?php
+    $articleManager = new ArticleManager($bdd);
 
+    $articles = $articleManager->get(1);
+
+    print_r2($articles);
 ?>
 
 <!DOCTYPE html>
