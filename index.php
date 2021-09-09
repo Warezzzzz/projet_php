@@ -1,22 +1,9 @@
 <?php require_once "config/init.conf.php"; ?>
 <?php require_once "class/Articles.class.php" ?>
 <?php require_once "config/bdd.conf.php" ?>
+<?php require_once "class/ArticleManager.php" ?>
+<?php
 
-<?php 
-
-    $article = new Articles();
-
-    $tab = [
-        'id' => 1,
-        "titre" => "Mon titre",
-        "text" => "Mon paragraphe",
-        "date" => new DateTime(),
-        "publie" => false
-    ];
-
-    $article->hydrate($tab);
-    
-    print_r2($article);
 ?>
 
 <!DOCTYPE html>
