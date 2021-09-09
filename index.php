@@ -1,11 +1,10 @@
-<?php require_once "config/init.conf.php"; ?>
+<?php require_once "config/init.conf.php"; ?>/
 <?php require_once "class/Articles.class.php" ?>
 <?php require_once "class/ArticleManager.php" ?>
 <?php
     $articleManager = new ArticleManager($bdd);
 
-    $articles = $articleManager->get(1);
-
+    $articles = $articleManager->getList();
     print_r2($articles);
 ?>
 
@@ -35,36 +34,31 @@
                 </div>
             </div>
             <!-- Content Row-->
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
+               <div class="row gx-4 gx-lg-5">
+                   <?php foreach ($articles as $key => $listeArticle) { ?>
+                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
+                        <img class="card-img-top" <?php if($listeArticle->getId() == 1) { echo 'src="img/logo1.png"';} elseif ($listeArticle->getId() == 2) { echo 'src="img/logo2.jpg"';} elseif ($listeArticle->getId() == 3) { echo 'src="img/logo3.png"';} ?> alt="Card image cap">
                         <div class="card-body">
-                            <h2 class="card-title">Card One</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                            <h2 class="card-title"><?= $listeArticle->getTitre() ?></h2>
+                            <p class="card-text"><?= $listeArticle->getTexte() ?></p>
+                            <?php if($listeArticle->getPublie() != false)
+                            {
+                                echo "<button class='btn btn-success'>L'article est publie</button>";
+                            } else {
+                                echo "<button class='btn btn-danger'>L'article n'est pas publié</button>";
+                            }
+
+
+                                ?>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!"><?= $listeArticle->getDate() ?></a></div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Card Two</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Card Three</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
+                 </div>
+                   <?php } ?>
                 </div>
             </div>
-        </div>
+
         <!-- Footer-->
         <?php include_once("includes/footer.inc.php") ?>
         <!-- Bootstrap core JS-->

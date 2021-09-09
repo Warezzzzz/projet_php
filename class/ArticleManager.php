@@ -104,4 +104,23 @@ class ArticleManager {
         $article->hydrate($donnees);
         return $article;
     }
+
+    public function getList() {
+        $listArticle = [];
+
+        $sql = 'SELECT * FROM articles';
+
+        $req = $this->bdd->prepare($sql);
+
+        $req->execute();
+
+        while($donnees = $req->fetch(PDO::FETCH_ASSOC)) {
+            $article = new Articles();
+            $article->hydrate($donnees);
+            $listArticle[] = $article;
+        }
+
+
+        return $listArticle;
+    }
 }
