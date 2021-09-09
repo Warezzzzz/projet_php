@@ -108,7 +108,7 @@ class ArticleManager {
     public function getList() {
         $listArticle = [];
 
-        $sql = 'SELECT * FROM articles';
+        $sql = 'SELECT * FROM articles ';
 
         $req = $this->bdd->prepare($sql);
 
